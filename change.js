@@ -4,6 +4,9 @@ let data = fs.readFileSync('./utf-8.csv', 'utf-8');
 
 // enter 공백 없애기
 let splitData = data.split('\r\n');
-// ,(쉼표) 제거하기
+// obj의 key data 뽑기
 let title = splitData[0].split(',');
-console.log(title);
+
+for (let i = 1; i < splitData.length; i++) {
+  // console.log(splitData[i]);
+}
