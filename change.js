@@ -7,6 +7,8 @@ let splitData = data.split('\r\n');
 // obj의 key가 될 data 추출
 let key = splitData[0].split(',');
 
+let end = [];
+
 // for문을 통해 key를 제외한 나머지 값 나타나게 하기
 for (let i = 1; i < splitData.length; i++) {
   // key를 제외한 나머지 데이터에서 ,(쉼표) 제거
@@ -18,5 +20,13 @@ for (let i = 1; i < splitData.length; i++) {
     // 빈 객체의 key === key[j] / value === value[j]
     obj[key[j]] = value[j];
   }
-  console.log(obj);
+  // 데이터가 들어간 obj 객체를 end라는 빈 배열에 넣어줌
+  end.push(obj);
+  // console.log(obj);
 }
+// 생성 전, JSON 형식으로 변환
+let change = JSON.stringify(end, null, 2);
+
+// end의 데이터를 토대로 json 생성
+let a = fs.writeFileSync('./city.json', change, 'utf-8');
+console.log(a);
