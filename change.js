@@ -24,9 +24,9 @@ for (let i = 1; i < splitData.length; i++) {
   end.push(obj);
   // console.log(obj);
 }
-// 생성 전, JSON 형식으로 변환
+// end의 데이터를 JSON 작성 방식으로 변환
 let change = JSON.stringify(end, null, 2);
 
-// end의 데이터를 토대로 json 생성
+// 변환한 데이터를 토대로 json 파일 생성
 let a = fs.writeFileSync('./city.json', change, 'utf-8');
 console.log(a);
