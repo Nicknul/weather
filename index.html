@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>단기예보조회</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      const getWeatherAJAX = () => {
+        const xhr = new XMLHttpRequest();
+        console.dir('데이터 받기 전 조회 :' + xhr);
+        xhr.open('GET', 'city.json', true);
+
+        xhr.addEventListener('load', () => {
+          if (xhr.status === 200) {
+            console.log('데이터를 받은 후 조회');
+            console.dir(xhr);
+
+            const weather = JSON.parse(xhr.responseText);
+            console.dir(weather);
+
+            const root = document.getElementById('root');
+            const ul = document.createElement('ul');
+            weather.forEach((element) => {
+              const li = document.createElement('li');
+              li.textContent = `${element['1단계']} ${element['2단계']} ${element['3단계']}`;
+              ul.appendChild(li);
+            });
+            root.appendChild(ul);
+          }
+        });
+        xhr.send();
+      };
+      getWeatherAJAX();
+    </script>
+  </body>
+</html>
