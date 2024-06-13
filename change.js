@@ -1,4 +1,6 @@
 const fs = require('fs');
 
-let a = fs.readFileSync('./utf-8.csv', 'utf-8');
-console.log(a);
+let data = fs.readFileSync('./utf-8.csv', 'utf-8');
+
+// enter 공백 없애기
+let splitData = data.split('\r\n');
