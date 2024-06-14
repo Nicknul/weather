@@ -8,7 +8,7 @@
   <body>
     <div id="root"></div>
     <script>
-      const getWeatherAJAX = () => {
+      const geCityAJAX = () => {
         const xhr = new XMLHttpRequest();
         console.dir('데이터 받기 전 조회 :' + xhr);
         xhr.open('GET', 'city.json', true);
@@ -18,14 +18,50 @@
             console.log('데이터를 받은 후 조회');
             console.dir(xhr);
 
-            const weather = JSON.parse(xhr.responseText);
-            console.dir(weather);
+            const city = JSON.parse(xhr.responseText);
+            console.dir(city);
 
             const root = document.getElementById('root');
             const ul = document.createElement('ul');
-            weather.forEach((element) => {
+            city.forEach((element) => {
               const li = document.createElement('li');
               li.textContent = `${element['1단계']} ${element['2단계']} ${element['3단계']}`;
+              ul.appendChild(li);
+            });
+            root.appendChild(ul);
+          }
+        });
+        xhr.send();
+      };
+      // geCityAJAX();
+
+      const getWeatherAJAX = () => {
+        const xhr = new XMLHttpRequest();
+        console.dir('데이터 받기 전 조회 :' + xhr);
+        const keyName = `n8uIBadsqMx4UqYvGKL7l7l2Gkut99sQyvUHXQJdNhOo0pQQRE0vwEgMMYsptCZ91a4L%2Fna8hWLVrGmNkOQS5w%3D%3D`;
+
+        const endPoint = `http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=${keyName}&numOfRows=10&pageNo=1&dataType=JSON&base_date=20240612&base_time=1400&nx=67&ny=100`;
+
+        xhr.open('GET', endPoint, true);
+
+        xhr.addEventListener('load', () => {
+          if (xhr.status === 200) {
+            console.log('데이터를 받은 후 조회');
+            console.dir(xhr);
+
+            const result = JSON.parse(xhr.responseText);
+            console.dir(result);
+
+            const weather = result.response.body.items.item;
+            console.log(weather);
+
+            const root = document.getElementById('root');
+            const ul = document.createElement('ul');
+
+            weather.forEach((element) => {
+              console.log(element);
+              const li = document.createElement('li');
+              li.textContent = `${element.category} : ${element.fcstValue}`;
               ul.appendChild(li);
             });
             root.appendChild(ul);
