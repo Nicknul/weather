@@ -9,7 +9,7 @@ response = requests.get(url)
 data = response.json()
 pretty_data = json.dumps(data, indent=2)
 
-zone_code = '/Users/waddi/Desktop/weather/ZoneCode.json'
+zone_code = '/Users/waddi/Desktop/weather/storage/json_data/ZoneCode.json'
 with open(zone_code, 'r') as file:
     data = json.load(file)
 
