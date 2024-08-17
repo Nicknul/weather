@@ -7,7 +7,11 @@ url = f'http://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa?serviceKey={a
 
 response = requests.get(url)
 data = response.json()
-
 pretty_data = json.dumps(data, indent=2)
 
+zone_code = '/Users/waddi/Desktop/weather/ZoneCode.json'
+with open(zone_code, 'r') as file:
+    data = json.load(file)
+
+pretty_data = json.dumps(data, indent=2, ensure_ascii=False)
 print(pretty_data)
