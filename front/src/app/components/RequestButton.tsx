@@ -1,9 +1,9 @@
-import { fetchFromServer } from '../services/apiClient';
+import { fetchWeatherData } from '../services/apiClient';
 
 const RequestButton = () => {
   const handleClick = async () => {
     try {
-      await fetchFromServer();
+      await fetchWeatherData();
     } catch (error) {
       console.error('프론트: 버튼 클릭 처리 중 에러 발생:', error);
     }
