@@ -1,6 +1,6 @@
-export const fetchFromServer = async () => {
+export const fetchWeatherData = async () => {
   try {
-    const response = await fetch('http://localhost:8000/test', {
+    const response = await fetch('http://localhost:8000/weather', {
       method: 'GET',
     });
 
