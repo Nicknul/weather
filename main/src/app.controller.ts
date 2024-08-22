@@ -2,12 +2,12 @@ import { Controller, Get } from '@nestjs/common';
 
 @Controller()
 export class AppController {
-  @Get('test')
+  @Get('weather')
   async handleTestRequest() {
     console.log('메인 서버: 프론트로부터 요청을 받았습니다.');
 
     try {
-      const response = await fetch('http://localhost:8080/db', {
+      const response = await fetch('http://localhost:8080/weather', {
         method: 'GET',
       });
 
