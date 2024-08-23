@@ -1,3 +1,7 @@
 from datetime import datetime
 
-now_datatime = datetime.now().date()
+now = datetime.now()
+
+now_data = now.strftime('%Y%m%d%H')
+print(now_data)
+
