@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { fetchWeatherData } from '../services/apiClient';
+import { fetchWeatherData } from '@/app/services/apiClient';
 
 const WeatherButton = () => {
   const [weatherData, setWeatherData] = useState<any[]>([]);
