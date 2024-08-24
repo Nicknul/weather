@@ -20,7 +20,6 @@ async def receive_zone_data(request: Request):
         zone = data.get('zone')
         print(f"데이터베이스 서버: 메인 서버로부터 받은 지역 코드: {zone}")
 
-        # 응답을 메인 서버로 반환
         return {"message": "지역 코드를 정상적으로 처리했습니다."}
     except Exception as e:
         print(f"데이터베이스 서버: 에러 발생 - {e}")
