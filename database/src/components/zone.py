@@ -20,12 +20,11 @@ async def receive_zone_data(request: Request):
         zone = data.get('zone')
         print(f"데이터베이스 서버: 메인 서버로부터 받은 지역 코드: {zone}")
 
-        # JSON 파일을 읽고 객체 키 이름과 비교
         with open(json_file_path, 'r', encoding='utf-8') as file:
             zone_data = json.load(file)
 
         if zone in zone_data:
-            zone_value = zone_data[zone]  # 키에 해당하는 값 가져오기
+            zone_value = zone_data[zone]
             print(f"데이터베이스 서버: {zone} 지역 코드가 ZoneCode.json 파일에 존재합니다. 해당 값: {zone_value}")
             return {"message": f"지역 코드 '{zone}'가 ZoneCode.json에 존재합니다.", "value": zone_value}
         else:
