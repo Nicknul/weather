@@ -28,4 +28,18 @@ export class AppController {
       throw new Error('메인 서버: 데이터베이스 서버 요청 실패');
     }
   }
+
+  @Get('fetch-array')
+  async fetchArrayFromPython() {
+    const response = await fetch('http://localhost:8080/get-array', {
+      method: 'GET',
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data. Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  }
 }
