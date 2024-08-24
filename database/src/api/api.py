@@ -15,5 +15,5 @@ def get_weather_data():
   pretty_data = json.dumps(data, indent=2)
   weather_data = data['response']['body']['items']['item']
 
-  # print(pretty_data)
+  # print(pretty_data)s
   return weather_data
