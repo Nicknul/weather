@@ -32,6 +32,7 @@ const ZoneCodeSelect: React.FC = () => {
       <select
         className="block w-full bg-white border border-gray-300 text-gray-700 py-2 px-3 rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-500"
         onChange={(e) => handleSelectChange(e.target.value)}
+        aria-label="옵션 선택"
       >
         {options.map((option, index) => (
           <option key={index} value={option}>
