@@ -8,7 +8,7 @@ const ZoneCodeSelect: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8000/fetch-array');
+        const response = await fetch('http://localhost:8000/data/fetch-array');
         if (!response.ok) {
           throw new Error(`Failed to fetch data. Status: ${response.status}`);
         }
