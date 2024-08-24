@@ -1,23 +1,44 @@
-import React, { useState } from 'react';
-import SelectBox from '../../../modules/SelectBodx';
+// src/app/modules/ZoneCodeSelect.tsx (React 컴포넌트)
 
-const ZoneCodeSelect = () => {
-  const [selectedOption, setSelectedOption] = useState<string>('');
+import React, { useState, useEffect } from 'react';
+
+const ZoneCodeSelect: React.FC = () => {
+  const [options, setOptions] = useState<string[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/fetch-array');
+        if (!response.ok) {
+          throw new Error(`Failed to fetch data. Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setOptions(data);
+      } catch (error) {
+        console.error('Error fetching array data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleSelectChange = (value: string) => {
-    setSelectedOption(value);
-    console.log('선택한 옵션:', value);
+    console.log('Selected option:', value);
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">셀렉트 박스 예제</h1>
-      <SelectBox
-        options={['Option 1', 'Option 2', 'Option 3']}
-        onChange={handleSelectChange} // onChange 속성 전달
-        label="옵션 선택"
-      />
-      <p className="mt-4">선택한 옵션: {selectedOption}</p>
+    <div className="mb-4">
+      <label className="block text-gray-700 text-sm font-bold mb-2">옵션 선택</label>
+      <select
+        className="block w-full bg-white border border-gray-300 text-gray-700 py-2 px-3 rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-500"
+        onChange={(e) => handleSelectChange(e.target.value)}
+      >
+        {options.map((option, index) => (
+          <option key={index} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
