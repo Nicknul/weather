@@ -6,7 +6,7 @@ import { Controller, Get } from '@nestjs/common';
 export class DataController {
   @Get('fetch-array')
   async fetchArrayFromPython() {
-    const response = await fetch('http://localhost:8080/get-array', {
+    const response = await fetch('http://localhost:8080/zone-keys', {
       method: 'GET',
     });
 
