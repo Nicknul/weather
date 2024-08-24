@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SelectBox from '../components/SelectBodx';
+import SelectBox from '../../../modules/SelectBodx';
 
 const ZoneCodeSelect = () => {
   const [selectedOption, setSelectedOption] = useState<string>('');
