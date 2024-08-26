@@ -28,7 +28,7 @@ const WeatherButton = () => {
       <SelectBox
         options={options}
         onChange={handleZoneChange} // 선택한 지역이 바뀌면 handleZoneChange 호출
-        label="지역 코드를 선택하세요"
+        label="나의 위치"
       />
       <div className="mt-4">
         {weatherData.length > 0 && (
