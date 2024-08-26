@@ -1,18 +1,13 @@
 import { useState, useEffect } from 'react';
 import { fetchWeatherData } from '@/app/services/apiClient';
+import { useZoneCode } from '@/app/hooks/useZoneCode'; // useZoneCode 훅을 가져옴
+import SelectBox from '@/modules/SelectBox';
 
 const WeatherButton = () => {
   const [weatherData, setWeatherData] = useState<any[]>([]);
-  const [zone, setZone] = useState<string>(''); // 지역 코드를 위한 상태 추가
-  const [zones, setZones] = useState<string[]>([]); // 셀렉트 박스에 표시될 지역 코드 목록
-
-  useEffect(() => {
-    // 셀렉트 박스에 표시될 지역 코드 목록을 설정 (예시)
-    setZones(['서울', '부산', '대구', '인천']); // 실제 지역 코드 목록으로 대체
-  }, []);
+  const { options } = useZoneCode(); // useZoneCode 훅을 사용
 
   const handleZoneChange = async (selectedZone: string) => {
-    setZone(selectedZone);
     try {
       const data = await fetchWeatherData(selectedZone); // 선택한 zone 값을 전달
       setWeatherData(data);
@@ -21,24 +16,20 @@ const WeatherButton = () => {
     }
   };
 
+  useEffect(() => {
+    // 지역이 선택되었을 때 handleZoneChange를 호출하여 날씨 데이터를 가져옴
+    if (options.length > 0) {
+      handleZoneChange(options[0]); // 초기값으로 첫 번째 옵션 사용 (선택적으로)
+    }
+  }, [options]);
+
   return (
     <div className="p-4">
-      <label htmlFor="zoneSelect" className="block text-gray-700 text-sm font-bold mb-2">
-        지역 코드를 선택하세요:
-      </label>
-      <select
-        id="zoneSelect"
-        value={zone}
-        onChange={(e) => handleZoneChange(e.target.value)}
-        className="block w-full mb-4 p-2 border rounded"
-      >
-        <option value="">지역을 선택하세요</option>
-        {zones.map((zoneOption, index) => (
-          <option key={index} value={zoneOption}>
-            {zoneOption}
-          </option>
-        ))}
-      </select>
+      <SelectBox
+        options={options}
+        onChange={handleZoneChange} // 선택한 지역이 바뀌면 handleZoneChange 호출
+        label="지역 코드를 선택하세요"
+      />
       <div className="mt-4">
         {weatherData.length > 0 && (
           <ul className="bg-gray-100 p-4 rounded-lg shadow-md">
