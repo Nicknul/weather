@@ -7,7 +7,6 @@ export default function Weather() {
     <>
       <div className="m-5 bg-blue">
         <WeatherButton />
-        <ZoneCodeSelect />
       </div>
     </>
   );
