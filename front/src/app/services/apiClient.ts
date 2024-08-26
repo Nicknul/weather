@@ -1,7 +1,11 @@
-export const fetchWeatherData = async () => {
+export const fetchWeatherData = async (zone: string) => {
   try {
     const response = await fetch('http://localhost:8000/weather', {
-      method: 'GET',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ zone }), // zone 값을 전달
     });
 
     if (!response.ok) {
