@@ -1,16 +1,18 @@
-// src/app/weather.controller.ts
-
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 
 @Controller('weather')
 export class WeatherController {
-  @Get()
-  async handleWeatherRequest() {
+  @Post()
+  async handleWeatherRequest(@Body() body: { zone: string }) {
     console.log('메인 서버: 프론트로부터 날씨 요청을 받았습니다.');
 
     try {
-      const response = await fetch('http://localhost:8080/weather', {
-        method: 'GET',
+      const response = await fetch('http://localhost:8080/db/zone', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ zone: body.zone }), // zone 값을 전달
       });
 
       if (!response.ok) {
