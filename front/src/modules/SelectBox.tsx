@@ -21,6 +21,7 @@ const SelectBox: React.FC<SelectBoxProps> = ({ options = [], onChange = () => {}
         className="block w-24 bg-white border border-gray-300 text-gray-700 py-2 px-3 rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-500"
         onChange={(e) => onChange!(e.target.value)}
       >
+        <option>지역을 선택하세요</option>
         {options.map((option, index) => (
           <option key={index} value={option}>
             {option}
