@@ -18,7 +18,7 @@ const SelectBox: React.FC<SelectBoxProps> = ({ options = [], onChange = () => {}
       )}
       <select
         id={selectId}
-        className="block w-24 bg-white border border-gray-300 text-gray-700 py-2 px-3 rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-500"
+        className="block w-full mb-4 p-2 border rounded"
         onChange={(e) => onChange!(e.target.value)}
       >
         <option>지역을 선택하세요</option>
