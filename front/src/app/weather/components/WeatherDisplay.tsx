@@ -9,11 +9,9 @@ const WeatherDisplay = ({ weatherData }: { weatherData: any[] }) => {
 
   return (
     <div>
-      <h2>오늘의 날씨</h2>
       <WeatherDay data={today} />
       <WeatherHour data={today} />
 
-      <h2>내일의 날씨</h2>
       <WeatherDay data={tomorrow} />
     </div>
   );
