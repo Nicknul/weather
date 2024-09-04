@@ -28,10 +28,18 @@ window.addEventListener('load', () => {
     for (let i = 0; i < api_data.length; i++) {
       const category = api_data[i].category;
       const fcstValue = api_data[i].fcstValue;
-      const sky_arr = ['맑음', '구름 조금', '구름 많음'];
+      const sky_arr = ['맑음', '구름 조금', '구름 많음', '흐림'];
       if (category === 'SKY') {
         let index = Number(fcstValue) - 1;
-        console.log(sky_arr[index]);
+        if (sky_arr[index] === '맑음') {
+          const img = new Image();
+          img.src = '../../storage/images/hot_sun.png';
+          img.alt = '맑음';
+
+          img.width = 48;
+          img.height = 48;
+          sky.appendChild(img);
+        }
       }
     }
   };
