@@ -1,13 +1,10 @@
 // components/WeatherHour.tsx
 import React from 'react';
 
-const WeatherHour = ({ data }: { data: any[] }) => {
-  const hourlyData = data.filter((item) => item.category === 'TMP');
-
+const WeatherHour = ({ hourlyData }: { hourlyData: any[] }) => {
   return (
     <div>
       {hourlyData.map((hour, index) => {
-        // fcstTime의 앞 2자리를 가져와서 숫자로 변환
         const hourNumber = Number(hour.fcstTime.slice(0, 2));
 
         return (
