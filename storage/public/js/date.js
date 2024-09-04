@@ -33,7 +33,7 @@ window.addEventListener('load', () => {
 
     set.id = 'set';
     todaySets.id = 'today';
-    hourlySets.id = 'hourly';
+    hourlySets.id = 'hourlySets';
 
     set.appendChild(hourlySets);
     set.appendChild(todaySets);
@@ -69,13 +69,29 @@ window.addEventListener('load', () => {
               let lowest = document.createElement('div');
 
               days.textContent = '오늘';
-              lowest.textContent = `${fcstValue}`;
+              lowest.textContent = `${fcstValue}℃`;
 
               todaySets.appendChild(days);
               todaySets.appendChild(lowest);
             } else {
+              /**
+               * hour : 시간
+               * hourly : 시간별 기온 묶음
+               * temperature : 기온
+               */
+              let a = fcstTime.slice(0, 2);
+              let b = Number(a);
+
+              let temperature = document.createElement('div');
+              let hour = document.createElement('div');
               let hourly = document.createElement('div');
-              hourly.textContent = `${fcstValue}`;
+
+              hourly.className = 'hourly';
+              hour.textContent = `${b}시`;
+              temperature.textContent = `${fcstValue}℃`;
+
+              hourly.appendChild(hour);
+              hourly.appendChild(temperature);
               hourlySets.appendChild(hourly);
             }
           } else {
