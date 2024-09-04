@@ -23,11 +23,43 @@ window.addEventListener('load', () => {
     date = '0' + date;
   }
 
+  let hour_1 = now.getHours().toString();
+  let minutes = now.getMinutes().toString();
+
+  if (hour_1.length < 2) {
+    hour_1 = '0' + hour_1;
+  }
+  if (minutes.length < 2) {
+    minutes = '0' + minutes;
+  }
+
+  const now_time = Number(hour_1 + minutes);
+
+  let base_time = '';
+
+  if (now_time >= 210 && now_time <= 510) {
+    base_time = '0200';
+  } else if (now_time > 510 && now_time <= 810) {
+    base_time = '0500';
+  } else if (now_time > 810 && now_time <= 1110) {
+    base_time = '0800';
+  } else if (now_time > 1110 && now_time <= 1410) {
+    base_time = '1100';
+  } else if (now_time > 1410 && now_time <= 1710) {
+    base_time = '1400';
+  } else if (now_time > 1710 && now_time <= 2010) {
+    base_time = '1700';
+  } else if (now_time > 2010 && now_time <= 2310) {
+    base_time = '2000';
+  } else {
+    base_time = '2300';
+  }
+
   const processDate = year + month + date;
   const transformDate = Number(processDate);
 
   const key = 'n8uIBadsqMx4UqYvGKL7l7l2Gkut99sQyvUHXQJdNhOo0pQQRE0vwEgMMYsptCZ91a4L%2Fna8hWLVrGmNkOQS5w%3D%3D';
-  const url = `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=${key}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${processDate}&base_time=0200&nx=67&ny=100`;
+  const url = `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst?serviceKey=${key}&pageNo=1&numOfRows=1000&dataType=JSON&base_date=${processDate}&base_time=${base_time}&nx=67&ny=100`;
   // console.log(url);
 
   async function shortWeather() {
@@ -80,7 +112,7 @@ window.addEventListener('load', () => {
               let img = new Image();
               img.width = 48;
               img.height = 48;
-              img.src = '../../storage/images/cloud_sun_sunny.png';
+              img.src = '../../storage/images/hot_sun.png';
               img.alt = '구름 + 해';
 
               let a = fcstTime.slice(0, 2);
