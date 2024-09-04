@@ -80,7 +80,7 @@ window.addEventListener('load', () => {
               let img = new Image();
               img.width = 48;
               img.height = 48;
-              img.src = '../../../cloud_sun_sunny.png';
+              img.src = '../../storage/images/cloud_sun_sunny.png';
               img.alt = '구름 + 해';
 
               let a = fcstTime.slice(0, 2);
