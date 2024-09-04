@@ -7,7 +7,15 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div name="단기예보" id="bundle">
+        <div name="시간별 기온" class="temperature" id="hour-bundle"></div>
+        <div name="오늘 기온" class="temperature" id="today-bundle"></div>
+        <div name="내일 기온" class="temperature" id="tomorrow-bundle"></div>
+        <div name="모레 기온" class="temperature" id="day-after-tomorrow-bundle"></div>
+        <div name="글피 기온" class="temperature" id="two-day-after-tomorrow-bundle"></div>
+      </div>
+    </div>
     <script src="js/date.js"></script>
   </body>
 </html>
