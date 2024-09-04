@@ -1,0 +1,10 @@
+#hourly,
+#today {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#hourly > div,
+#today > div {
+  padding: 10px;
+}
