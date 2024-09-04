@@ -1,5 +1,5 @@
 'use client';
-import Weather from './weather/page';
+import Weather from './weather/Weather';
 
 export default function Home() {
   return (
