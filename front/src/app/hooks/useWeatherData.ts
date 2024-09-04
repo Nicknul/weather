@@ -28,6 +28,7 @@ export const useWeatherData = () => {
 
   return {
     weatherData,
+    location, // 위치 정보를 반환
     locationError,
     error,
     isLoading: !weatherData.length && !locationError && !error,
