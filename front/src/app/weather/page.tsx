@@ -1,15 +1,20 @@
-// weather/Weather.tsx
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useWeather } from '../hooks/useWeather';
 import WeatherDisplay from './components/WeatherDisplay';
+import { getCurrentDate } from '../services/dateUtils';
 
 const Weather = () => {
-  window.addEventListener('load', () => {
-    const now = new Date();
-    console.log(now);
-  });
-  const weatherData = useWeather('20240904'); // 현재 날짜 예시
+  const [currentDate, setCurrentDate] = useState<string>('');
+
+  // useEffect를 사용해 현재 날짜를 설정하는 로직
+  useEffect(() => {
+    const formattedDate = getCurrentDate(); // 유틸리티 함수 호출
+    setCurrentDate(formattedDate); // 현재 날짜 상태로 설정
+  }, []); // 컴포넌트가 처음 로드될 때 한 번만 실행
+
+  // 현재 날짜를 사용해 날씨 데이터 조회
+  const weatherData = useWeather(currentDate);
 
   return (
     <div>
