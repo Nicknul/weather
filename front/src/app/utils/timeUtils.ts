@@ -12,19 +12,19 @@ export const getBaseTime = (): string => {
 
   let baseTime = '';
 
-  if (nowTime >= 210 && nowTime <= 510) {
+  if (nowTime >= 210 && nowTime < 510) {
     baseTime = '0200';
-  } else if (nowTime > 510 && nowTime <= 810) {
+  } else if (nowTime >= 510 && nowTime < 810) {
     baseTime = '0500';
-  } else if (nowTime > 810 && nowTime <= 1110) {
+  } else if (nowTime >= 810 && nowTime < 1110) {
     baseTime = '0800';
-  } else if (nowTime > 1110 && nowTime <= 1410) {
+  } else if (nowTime >= 1110 && nowTime < 1410) {
     baseTime = '1100';
-  } else if (nowTime > 1410 && nowTime <= 1710) {
+  } else if (nowTime >= 1410 && nowTime < 1710) {
     baseTime = '1400';
-  } else if (nowTime > 1710 && nowTime <= 2010) {
+  } else if (nowTime >= 1710 && nowTime < 2010) {
     baseTime = '1700';
-  } else if (nowTime > 2010 && nowTime <= 2310) {
+  } else if (nowTime >= 2010 && nowTime < 2310) {
     baseTime = '2000';
   } else {
     baseTime = '2300';
