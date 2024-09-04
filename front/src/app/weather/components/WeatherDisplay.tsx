@@ -2,36 +2,36 @@
 import React from 'react';
 import WeatherDay from './WeatherDay';
 import WeatherHour from './WeatherHour';
+import { getCurrentDate } from '../../services/dateUtils';
 
 const WeatherDisplay = ({ weatherData }: { weatherData: any[] }) => {
-  const today = weatherData.filter((item) => item.fcstDate === getCurrentDate());
-  const tomorrow = weatherData.filter((item) => item.fcstDate === getTomorrowDate());
+  const currentDate = getCurrentDate();
+
+  // 최고/최저 기온 데이터 필터링
+  const tmxData = weatherData.filter((item) => item.category === 'TMX');
+  const tmnData = weatherData.filter((item) => item.category === 'TMN');
+
+  // 오늘의 시간별 기온 데이터 필터링
+  const hourlyData = weatherData.filter((item) => item.category === 'TMP' && item.fcstDate === currentDate);
 
   return (
     <div>
-      <WeatherDay data={today} />
-      <WeatherHour data={today} />
+      {tmxData.map((tmx, index) => {
+        const tmn = tmnData[index];
+        const apiDate = tmx.fcstDate;
 
-      <WeatherDay data={tomorrow} />
+        // 날짜가 오늘인지 확인
+        const isToday = apiDate === currentDate;
+
+        return (
+          <div key={index}>
+            <WeatherDay data={[tmx, tmn]} /> {/* 최고/최저 기온 표시 */}
+            {isToday && <WeatherHour hourlyData={hourlyData} />} {/* 오늘의 시간별 기온 표시 */}
+          </div>
+        );
+      })}
     </div>
   );
-};
-
-const getCurrentDate = () => {
-  const now = new Date();
-  let year = now.getFullYear();
-  let month = (now.getMonth() + 1).toString().padStart(2, '0');
-  let date = now.getDate().toString().padStart(2, '0');
-  return `${year}${month}${date}`;
-};
-
-const getTomorrowDate = () => {
-  const now = new Date();
-  now.setDate(now.getDate() + 1);
-  let year = now.getFullYear();
-  let month = (now.getMonth() + 1).toString().padStart(2, '0');
-  let date = now.getDate().toString().padStart(2, '0');
-  return `${year}${month}${date}`;
 };
 
 export default WeatherDisplay;
