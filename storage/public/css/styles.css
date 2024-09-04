@@ -1,19 +1,13 @@
-#hourlySets,
-#today {
-  display: flex;
-  justify-content: space-evenly;
-}
-
-#today > div {
-  padding: 10px;
-}
-
 .hourly {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
-.hourly > div {
-  padding: 10px;
+.hourly > div,
+.temperature > div {
+  padding: 5px;
+}
+.temperature {
+  display: flex;
+  justify-content: space-evenly;
 }
