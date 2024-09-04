@@ -75,7 +75,14 @@ window.addEventListener('load', () => {
                * hour : 시간
                * hourly : 시간별 기온 묶음
                * temperature : 기온
+               * img : 날씨 아이콘
                */
+              let img = new Image();
+              img.width = 48;
+              img.height = 48;
+              img.src = '../../../cloud_sun_sunny.png';
+              img.alt = '구름 + 해';
+
               let a = fcstTime.slice(0, 2);
               let b = Number(a);
 
@@ -88,6 +95,7 @@ window.addEventListener('load', () => {
               temperature.textContent = `${fcstValue}℃`;
 
               hourly.appendChild(hours);
+              hourly.appendChild(img);
               hourly.appendChild(temperature);
               hour.appendChild(hourly);
             }
