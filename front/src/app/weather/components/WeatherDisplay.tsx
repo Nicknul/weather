@@ -2,7 +2,7 @@
 import React from 'react';
 import WeatherDay from './WeatherDay';
 import WeatherHour from './WeatherHour';
-import { getCurrentDate } from '../../services/dateUtils';
+import { getCurrentDate } from '../../utils/dateUtils';
 
 const WeatherDisplay = ({ weatherData }: { weatherData: any[] }) => {
   const currentDate = getCurrentDate();

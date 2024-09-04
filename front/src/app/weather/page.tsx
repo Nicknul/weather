@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useWeather } from '../hooks/useWeather';
 import WeatherDisplay from './components/WeatherDisplay';
-import { getCurrentDate } from '../services/dateUtils';
+import { getCurrentDate } from '../utils/dateUtils';
 
 const Weather = () => {
   const [currentDate, setCurrentDate] = useState<string>('');

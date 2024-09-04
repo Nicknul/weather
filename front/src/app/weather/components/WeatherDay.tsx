@@ -1,6 +1,6 @@
 // components/WeatherDay.tsx
 import React from 'react';
-import { getCurrentDate, getDayOfWeek } from '../../services/dateUtils';
+import { getCurrentDate, getDayOfWeek } from '../../utils/dateUtils';
 
 const WeatherDay = ({ data }: { data: any[] }) => {
   const tmx = data[0]; // 최고 기온 데이터
